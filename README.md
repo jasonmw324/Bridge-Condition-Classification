@@ -5,12 +5,30 @@ This project analyzes the structural condition of bridges across Georgia, focusi
 ## **Objective**
 Predict the condition of bridges (Good, Fair, Poor) using structural and traffic features to help the Department of Transportation prioritize inspections, allocate maintenance resources efficiently, and enhance public safety, with particular focus on identifying Poor and high-risk Fair bridges that require immediate attention. 
 
+## Dataset Overview
+This analysis uses real-world data from the [National Bridge Inventory (NBI)](https://www.fhwa.dot.gov/bridge/nbi.cfm), comprising bridge-level records for the state of Georgia from the 2021 reporting year.
+
+The original dataset contained hundreds of variables, many of which were identifiers or not directly related to bridge condition. It should be noted that `age` and `reconstructed` were derived through feature engineering. The final set of variables used in the analysis includes:
+
+- `adt` – Average daily traffic
+- `structure_len_mt` – Total bridge length in meters
+- `deck_width_mt` – Deck width in meters
+- `percent_adt_truck` – Percentage of truck traffic
+- `max_span_len_mt` – Maximum span length in meters
+- `age` – Calculated as `2021 - year_built`, representing the age of the bridge
+- `bridge_condition` – Target variable indicating condition (Poor, Fair, Good)
+- `structure_kind` – General type of bridge structure
+- `structure_type` – Specific type of bridge structure
+- `design_load` – Load rating/design category
+- `functional_class` – Functional classification of the road the bridge carries
+- `service_on` – Type of service or road
+- `reconstructed` – Binary indicator if the bridge has ever been reconstructed
+
+
 **Target Variable:**  
 - `0 = Poor`  
 - `1 = Fair`  
 - `2 = Good`  
-
-**Input Features:** Structural and traffic-related metrics, such as age, average daily traffic (ADT), bridge length, design load, and bridge type.  
 
 ---
 
