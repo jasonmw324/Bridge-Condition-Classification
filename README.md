@@ -69,7 +69,7 @@ The Random Forest model highlights the most important features influencing bridg
 2. **Average Daily Traffic (ADT)** – Bridges with higher traffic volumes tend to show more wear.  
 3. **Bridge Length** – Longer spans are associated with higher structural risk.  
 
-*Insert Feature Importance Plot Here*  
+![Feature Importance Plot](feature_importance_rf.png)
 
 **Business Insight:**  
 - Age, traffic, and structural dimensions are the primary drivers of bridge condition.  
@@ -78,16 +78,16 @@ The Random Forest model highlights the most important features influencing bridg
 ---
 
 ## **Recommendations for Action**  
-1. **Prioritize Poor bridges:** Even with moderate precision, high recall ensures most critical bridges are flagged for inspection.  
-2. **Further data collection:** Enhance features like material type, inspection history, and environmental factors to improve Fair class prediction.  
-3. **Integrate into planning:** Use model outputs to allocate maintenance resources efficiently and reduce safety risk.  
-4. **Continuous monitoring:** Update the model periodically with new inspections and traffic data to maintain accuracy.  
+1. **Prioritize Poor bridges:** Even with moderate precision, high recall ensures most critical bridges are flagged for inspection as that was the most critical aspect of the project.  
+2. **Further data collection:** Enhance features like material type, inspection history, and environmental factors to improve Fair and Poor class prediction. The problem of imblanced classes 
+3. **Integrate into planning:** Use model outputs to allocate maintenance resources efficiently and reduce safety risks. Leverage the strategies and upkeep practices of well-performing bridges to improve maintenance and performance of lower-condition bridges
+4. **Continuous monitoring:** Traffic data collection methods, standards, and metrics are constantly evolving. Update the model periodically with new inspection and traffic data to maintain accuracy. 
 
 ---
 
 ## **Next Steps / Future Enhancements**  
 - Explore **permutation-based feature importance** to validate which features most influence test-set predictions.  
 - Test **threshold optimization** or **cost-sensitive learning** to balance recall vs precision for Poor bridges.  
-- Investigate **additional models** (XGBoost, LightGBM) for potential performance gains.  
-- Implement a **dashboard**
+- Investigate **additional models** (XGBoost) for potential performance gains.  
+
 
