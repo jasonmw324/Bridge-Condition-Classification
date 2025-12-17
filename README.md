@@ -3,7 +3,7 @@
 ## **Project Background**
 This project analyzes the structural condition of bridges across Georgia, focusing on identifying bridges at risk of deterioration. The Department of Transportation (DOT) monitors bridge safety to ensure reliable and safe transportation infrastructure for the public. Understanding which bridges are most likely to be in Poor or Fair condition, how deterioration relates to age, traffic volume, and structural features, and which characteristics most influence risk helps the DOT prioritize inspections, allocate maintenance resources efficiently, and plan long-term infrastructure investments. Bridges in Poor condition — and to a lesser extent Fair condition — are higher priority for inspections and maintenance to prevent safety hazards and costly failures.
 ## **Objective**
-Predict the condition of bridges (Good, Fair, Poor) using structural and traffic features to help the Department of Transportation prioritize inspections, allocate maintenance resources efficiently, and enhance public safety, with particular focus on identifying Poor and high-risk Fair bridges that require immediate attention. 
+Predict the condition of bridges (Good, Fair, Poor) using structural and traffic features to help the Department of Transportation prioritize inspections, allocate maintenance resources efficiently, and enhance public safety, with particular focus on identifying Poor bridges, which pose the highest safety risk and require immediate attention.
 
 ## Dataset Overview
 This analysis uses real-world data from the [National Bridge Inventory (NBI)](https://www.fhwa.dot.gov/bridge/nbi.cfm), including information collected on 14987 Georgia bridges in 2021.
@@ -45,7 +45,8 @@ A **custom threshold** of 0.05 was applied for predicting Poor bridges to increa
 
 ---
 
-## **Final Model Performance (Test Set)**  
+## **Executive Summary** 
+Despite the significant class imbalance, with very few Poor bridges, the model still performed well in identifying them, prioritizing safety-critical cases.
 
 | Class      | Precision | Recall | F1-Score | Support |
 |------------|-----------|--------|----------|---------|
@@ -56,7 +57,7 @@ A **custom threshold** of 0.05 was applied for predicting Poor bridges to increa
 **Overall Accuracy:** 0.741  
 
 **Interpretation:**  
-- **Poor bridges:** The model correctly identifies **75% of all actual Poor bridges** (high recall), but **many bridges flagged as Poor are actually Fair or Good** (precision 30%). This is acceptable for safety-focused monitoring, where catching most Poor bridges is critical.  
+- **Poor bridges:** The model correctly identifies **75% of all actual Poor bridges** (recall: 0.75), but **many bridges flagged as Poor are actually Fair or Good** (precision 0.30). This is acceptable for safety-focused monitoring, where catching most Poor bridges is critical.  
 - **Fair bridges:** Hardest to predict accurately; likely overlaps with Good/Poor features.  
 - **Good bridges:** Predictions are very accurate, with high precision and recall.  
 
