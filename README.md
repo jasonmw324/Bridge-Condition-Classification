@@ -8,7 +8,7 @@ Predict the condition of bridges (Good, Fair, Poor) using structural and traffic
 ## Dataset Overview
 This analysis uses real-world data from the [National Bridge Inventory (NBI)](https://www.fhwa.dot.gov/bridge/nbi.cfm), including information collected on 14987 Georgia bridges in 2021.
 
-The original dataset contained hundreds of variables, many of which were identifiers or not directly related to bridge condition. It should be noted that `age` and `reconstructed` were derived through feature engineering. The final set of variables used in the analysis includes:
+The original dataset contained hundreds of variables, many of which were identifiers or not directly related to bridge condition.  It should be noted that `age` and `reconstructed` were derived through feature engineering. The final set of variables used in the analysis includes:
 
 - `adt` – Average daily traffic
 - `structure_len_mt` – Total bridge length in meters
@@ -23,12 +23,13 @@ The original dataset contained hundreds of variables, many of which were identif
 - `functional_class` – Functional classification of the road the bridge carries
 - `service_on` – Type of service or road
 - `reconstructed` – Binary indicator if the bridge has ever been reconstructed
+- 
+The target variable `bridge_condition` was composed of the following groups
 
-
-**Target Variable:**  
-- `0 = Poor`  
-- `1 = Fair`  
-- `2 = Good`  
+**Target Variable Distribution:**  
+- `0 = Poor` – 319 bridges (2.13%)  
+- `1 = Fair` – 3,614 bridges (24.11%)  
+- `2 = Good` – 11,054 bridges (73.76%)
 
 ---
 
@@ -37,7 +38,8 @@ A **Random Forest Classifier** was trained on historical bridge data (~3,000 bri
 Key parameters:  
 - Number of trees: 200  
 - Class weights: balanced manually to give equal weight to Poor, Fair, and Good bridges  
-- Random state: 0 (for reproducibility)  
+- Random state: 0 (for reproducibility)
+- 5-Fold Cross Validation was implemented to ensure no overfitting from the model
 
 A **custom threshold** of 0.05 was applied for predicting Poor bridges to increase detection sensitivity for this rare and critical class.  
 
