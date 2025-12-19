@@ -5,7 +5,7 @@ This project analyzes the structural condition of bridges across Georgia, focusi
 ## **Objective**
 Predict the condition of bridges (Good, Fair, Poor) using structural and traffic features to help the Department of Transportation prioritize inspections, allocate maintenance resources efficiently, and enhance public safety, with particular focus on identifying Poor bridges, which pose the highest safety risk and require immediate attention.
 
-The python code for the analysis can be found here [code](Bridge_Condition_Classification_Code.ipynb)
+The python code for the analysis can be found [here](Bridge_Condition_Classification_Code.ipynb)
 
 ## Dataset Overview
 This analysis uses real-world data from the [National Bridge Inventory (NBI)](https://www.fhwa.dot.gov/bridge/nbi.cfm), including information collected on 14987 Georgia bridges in 2021.
