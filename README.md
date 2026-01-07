@@ -36,7 +36,7 @@ The target variable `bridge_condition` was composed of the following groups
 ---
 
 ## **Model Overview**  
-A **Random Forest Classifier** was trained on historical bridge data (~3,000 bridges).  
+A **Random Forest Classifier** was trained on historical bridge data.  
 Key parameters:  
 - Number of trees: 200  
 - Class weights: balanced manually to give equal weight to Poor, Fair, and Good bridges  
