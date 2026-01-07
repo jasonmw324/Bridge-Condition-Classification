@@ -58,10 +58,23 @@ Despite the significant class imbalance, with very few Poor bridges, the model s
 
 **Overall Accuracy:** 0.741  
 
-**Interpretation:**  
-- **Poor bridges:** The model correctly identifies **75% of all actual Poor bridges** (recall: 0.75), but **many bridges flagged as Poor are actually Fair or Good** (precision 0.30). This is acceptable for safety-focused monitoring, where catching most Poor bridges is critical.  
-- **Fair bridges:** Hardest to predict accurately; likely overlaps with Good/Poor features.  
-- **Good bridges:** Predictions are very accurate, with high precision and recall.  
+## Insights:
+
+**Poor Bridges (Safety-Critical Class):**
+* **75% recall**: Successfully flags 3 out of 4 structurally deficient bridges, reducing risk of catastrophic failures
+* **30% precision**: Generates false alarms, but in bridge inspection, over-flagging is safer and cheaper than under-detection (inspection costs << collapse costs)
+* **Trade-off justification**: Prioritized sensitivity over specificity to align with FHWA safety mandates
+
+**Fair Bridges (Middle Class Challenge):**
+* **30% recall**: Struggles due to ambiguous condition boundaries overlapping with Good/Poor features
+* **Real-world reflection**: "Fair" condition is subjective even for human inspectors—deck rating of 5 vs 6 often varies by evaluator
+* **Future improvement**: Ordinal regression or threshold optimization could better capture this transition zone
+
+**Good Bridges (Strong Performance):**
+* **88% recall, 85% precision**: Strong performance ensures resources aren't wasted on unnecessary inspections
+* **Business value**: Correctly clearing 88% of safe bridges allows inspection teams to focus on high-risk assets
+
+**Key Takeaway**: Model optimized for **risk mitigation** rather than balanced accuracy—appropriate for infrastructure safety applications where missed Poor bridges have exponentially higher costs than false positives. 
 
 ---
 
