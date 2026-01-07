@@ -1,7 +1,8 @@
 # **Bridge Condition Classification**  
 
 ## **Project Background**
-This project analyzes the structural condition of bridges across Georgia, focusing on identifying bridges at risk of deterioration. The Department of Transportation (DOT) monitors bridge safety to ensure reliable and safe transportation infrastructure for the public. Understanding which bridges are most likely to be in Poor or Fair condition, how deterioration relates to age, traffic volume, and structural features, and which characteristics most influence risk helps the DOT prioritize inspections, allocate maintenance resources efficiently, and plan long-term infrastructure investments. Bridges in Poor condition — and to a lesser extent Fair condition — are higher priority for inspections and maintenance to prevent safety hazards and costly failures.
+This project analyzes the structural condition of bridges across Georgia, focusing on identifying bridges at risk of deterioration. The Department of Transportation (DOT) monitors bridge safety to ensure reliable and safe transportation infrastructure for the public. Understanding which bridges are most likely to be in Poor or Fair condition, how deterioration relates to age, traffic volume, and structural features, and which characteristics most influence risk helps the DOT prioritize inspections, allocate maintenance resources efficiently, and plan long-term infrastructure investments. Bridges in Poor condition (and to a lesser extent Fair condition) are higher priority for inspections and maintenance to prevent safety hazards and costly failures.
+
 ## **Objective**
 Predict the condition of bridges (Good, Fair, Poor) using structural and traffic features to help the Department of Transportation prioritize inspections, allocate maintenance resources efficiently, and enhance public safety, with particular focus on identifying Poor bridges, which pose the highest safety risk and require immediate attention.
 
