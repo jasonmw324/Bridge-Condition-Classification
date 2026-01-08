@@ -42,8 +42,7 @@ The target variable `bridge_condition` was composed of the following groups:
 A **Random Forest Classifier** was trained on historical bridge data.  
 
 Key parameters:  
-- Number of trees: 200  
-- Class weights: balanced manually to give equal weight to Poor, Fair, and Good bridges  
+- Number of trees: 200    
 - Random state: 0 (for reproducibility)
 - 5-Fold Cross Validation was implemented to ensure no overfitting from the model
 
@@ -83,7 +82,7 @@ Due to significant class imbalance (2.13% Poor bridges) and the inherent difficu
 * **88% recall, 85% precision**: Correctly identifies 1,944 out of 2,208 safe bridges, preventing wasted inspection resources
 * **Business value**: Allows DOT to focus limited resources on truly high-risk assets while safely reducing inspection frequency for verified Good bridges
 
-**Key Takeaway**: Model optimized for **risk mitigation** rather than balanced accuracy—appropriate for infrastructure safety applications where missing Poor bridges has exponentially higher costs than false positives.
+**Key Takeaway**: Model optimized for **risk mitigation** rather than balanced accuracy appropriate for infrastructure safety applications where missing Poor bridges has exponentially higher costs than false positives.
 
 ---
 
@@ -93,13 +92,13 @@ The Random Forest model identifies the most important features for predicting br
 
 **Top Predictive Features:**  
 1. **Age (importance: 0.28)** – Strongest predictor; bridges over 50 years show significantly higher deterioration rates
-2. **Average Daily Traffic (importance: 0.19)** – Counter intuitive as the Poor bridges had a significnatly lower mean average daily traffic value 
+2. **Average Daily Traffic (importance: 0.19)** – Counterintuitively, poor bridges had a significantly lower mean average daily traffic, suggesting that many of them are lightly used rural bridges, which may have been built with weaker materials given the anticipated low traffic they would encounter.
 3. **Structure Length (importance: 0.15)** – Longer spans have more potential failure points and stress concentrations
 
 ![Feature Importance Plot](feature_importance_rf.png)
 
 **Actionable Business Insight:**  
-High-risk bridge profile for prioritized inspection: **Age >50 years + ADT >10,000 + Length >100m**. These combined factors create compounding structural risk that warrants quarterly monitoring rather than standard biennial inspections.
+High-risk bridge profile for prioritized inspection: Age > 60 years, ADT < 600, Length < 40 m. These thresholds were computed from the 75th percentile of each feature among poor bridges. Since these features were found to be the most important features as shown in the feature importance plot, special attention is given to bridges exhibiting this combination to enable early flagging of high-risk structures.
 
 ---
 
@@ -118,9 +117,8 @@ High-risk bridge profile for prioritized inspection: **Age >50 years + ADT >10,0
 ---
 
 ## **Next Steps / Future Enhancements**  
-- **Model validation:** Implement permutation importance on test set to validate feature rankings and ensure model interpretability
 - **Threshold optimization:** Test cost-sensitive learning with actual DOT budget constraints to fine-tune Poor/Fair decision boundaries
-- **Advanced algorithms:** Evaluate XGBoost with SMOTE oversampling and ordinal regression to better capture Fair condition nuances
+- **Advanced algorithms:** Evaluate other models such as XGboost with SMOTE oversampling and ordinal regression to better capture Fair condition nuances
 - **Deployment:** Build interactive dashboard for DOT staff to input bridge characteristics and receive real-time risk assessments
 
 ---
