@@ -58,14 +58,13 @@ Due to significant class imbalance (2.13% Poor bridges) and the inherent difficu
 
 | Class      | Precision | Recall | F1-Score | Support |
 |------------|-----------|--------|----------|---------|
-| **Poor (0)**   | 0.30      | **0.75**   | 0.43     | 64      |   ![matrix](confusion_matrix.png)
+| **Poor (0)**   | 0.30      | **0.75**   | 0.43     | 64      |   
 | Fair (1)   | 0.58      | 0.30   | 0.39     | 718     |
 | Good (2)   | 0.85      | 0.88   | 0.87     | 2,208    |
 
 **Overall Accuracy:** 74.1%  
-
 ---
-
+![matrix](confusion_matrix.png)
 ## **Insights:**
 
 **Poor Bridges (Safety-Critical Class):**
