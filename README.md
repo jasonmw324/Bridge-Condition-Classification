@@ -96,21 +96,19 @@ The Random Forest model identifies the most important features for predicting br
 
 ![Feature Importance Plot](feature_importance_rf.png)
 
-**Actionable Business Insight:**  
-High-risk bridge profile for prioritized inspection: Age > 60 years, ADT < 600, Length < 40 m. These thresholds were computed from the 75th percentile of each feature among poor bridges. Since these features were found to be the most important features as shown in the feature importance plot, special attention is given to bridges exhibiting this combination to enable early flagging of high-risk structures.
 
 ---
 
 ## **Recommendations for Action**  
 
 **Immediate Actions:**
-1. **Flag high-risk bridges:** Prioritize inspection for bridges matching the high-risk profile (age >50, ADT <2k, length >100m). Model identifies approximately [X] bridges meeting these criteria.
+1. **Flag high-risk bridges:** Prioritize inspection for bridges matching the high-risk profile (age >60, ADT < 2000, length < 40m). 
 2. **Verify model predictions:** All bridges predicted as Poor should receive verification inspections within 90 days, even suspected false positives—the $2K cost is justified by $50M+ failure prevention.
 3. **Optimize resource allocation:** Reduce inspection frequency for high-confidence Good bridges (probability >0.90), reallocating saved budget to high-risk monitoring.
 
 **Long-term Improvements:**
 4. **Enhanced data collection:** Add material type, inspection history, environmental exposure (coastal/mountain), and maintenance records to improve Fair/Poor class differentiation.
-5. **Adopt successful practices:** Study well-maintained older bridges (age >60 but Good condition) to identify effective preservation strategies; replicate across deteriorating peer bridges.
+5. **Adopt successful practices:** Study well-maintained older bridges that are in Good condition to identify effective preservation strategies; replicate across deteriorating peer bridges.
 6. **Continuous model updates:** Retrain annually with new NBI data as traffic patterns, climate impacts, and infrastructure age distribution evolve.
 
 ---
