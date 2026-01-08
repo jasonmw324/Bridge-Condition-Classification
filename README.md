@@ -93,7 +93,7 @@ The Random Forest model identifies the most important features for predicting br
 
 **Top Predictive Features:**  
 1. **Age (importance: 0.28)** – Strongest predictor; bridges over 50 years show significantly higher deterioration rates
-2. **Average Daily Traffic (importance: 0.19)** – Heavy use accelerates structural wear and material fatigue
+2. **Average Daily Traffic (importance: 0.19)** – Counter intuitive as the Poor bridges had a significnatly lower mean average daily traffic value 
 3. **Structure Length (importance: 0.15)** – Longer spans have more potential failure points and stress concentrations
 
 ![Feature Importance Plot](feature_importance_rf.png)
@@ -106,7 +106,7 @@ High-risk bridge profile for prioritized inspection: **Age >50 years + ADT >10,0
 ## **Recommendations for Action**  
 
 **Immediate Actions:**
-1. **Flag high-risk bridges:** Prioritize inspection for bridges matching the high-risk profile (age >50, ADT >10K, length >100m). Model identifies approximately [X] bridges meeting these criteria.
+1. **Flag high-risk bridges:** Prioritize inspection for bridges matching the high-risk profile (age >50, ADT <2k, length >100m). Model identifies approximately [X] bridges meeting these criteria.
 2. **Verify model predictions:** All bridges predicted as Poor should receive verification inspections within 90 days, even suspected false positives—the $2K cost is justified by $50M+ failure prevention.
 3. **Optimize resource allocation:** Reduce inspection frequency for high-confidence Good bridges (probability >0.90), reallocating saved budget to high-risk monitoring.
 
