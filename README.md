@@ -46,7 +46,7 @@ Key parameters:
 - Random state: 0 (for reproducibility)
 - 5-Fold Cross Validation was implemented to ensure no overfitting from the model
 
-A **custom threshold** of 0.05 was applied for predicting Poor bridges to increase detection sensitivity for this rare and critical class.  
+A **custom threshold** of 0.05 was applied for predicting Poor bridges(vs default 0.33 for 3-class) to increase detection sensitivity for this rare and critical class.   
 
 ---
 
