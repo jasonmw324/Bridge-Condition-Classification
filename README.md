@@ -13,7 +13,18 @@ The python code for the analysis can be found [here](Bridge_Condition_Classifica
 ## **Dataset Overview**
 This analysis uses real-world data from the [National Bridge Inventory (NBI)](https://www.fhwa.dot.gov/bridge/nbi.cfm), including information collected on 14,987 Georgia bridges in 2021.
 
-The original dataset contained hundreds of variables, many of which were identifiers or not directly related to bridge condition. It should be noted that `age` and `reconstructed` were derived through feature engineering. The final set of variables used in the analysis includes:
+**Data Preparation:**
+The original dataset contained over 100 variables, many of which were identifiers, administrative codes, or not directly related to structural condition. An initial subset of approximately 16 structurally and operationally relevant variables were selected based on domain knowledge.
+
+**Feature Engineering:**
+New variables were created to enhance model predictiveness:
+- `age` – Calculated as `2021 - year_built` to capture bridge aging effects
+- `reconstructed` – Binary indicator derived from reconstruction history to identify bridges that have undergone major renovations
+
+**Feature Selection:**
+A baseline Random Forest model was then fitted to assess feature importance, further reducing the feature set to the most predictive variables for the final model.
+
+**Final Variables Used:**
 
 - `adt` – Average daily traffic
 - `structure_len_mt` – Total bridge length in meters
@@ -21,13 +32,9 @@ The original dataset contained hundreds of variables, many of which were identif
 - `percent_adt_truck` – Percentage of truck traffic
 - `max_span_len_mt` – Maximum span length in meters
 - `age` – Calculated as `2021 - year_built`, representing the age of the bridge
-- `bridge_condition` – Target variable indicating condition (Poor, Fair, Good)
-- `structure_kind` – General type of bridge structure
-- `structure_type` – Specific type of bridge structure
 - `design_load` – Load rating/design category
-- `functional_class` – Functional classification of the road the bridge carries
-- `service_on` – Type of service or road
 - `reconstructed` – Binary indicator if the bridge has ever been reconstructed
+
 
 The target variable `bridge_condition` was composed of the following groups:
 
@@ -37,14 +44,30 @@ The target variable `bridge_condition` was composed of the following groups:
 - `2 = Good` – 11,054 bridges (73.76%)
 
 ---
+For training the model a 70/30 train test split was implemented
 
 ## **Model Overview**  
-A **Random Forest Classifier** was trained on historical bridge data.  
 
-Key parameters:  
-- Number of trees: 200    
+**Models Evaluated:**
+- Random Forest Classifier
+- XGBoost
+- Support Vector Classifier (SVC)
+
+**Final Model: Random Forest Classifier**
+
+The Random Forest model was selected as the final model based on its superior recall for Poor bridges ([77%] vs [61%] for XGBoost and [20%] for SVC), making it most effective at identifying safety critical infrastructure.
+
+
+**Hyperparameter Tuning:**
+RandomizedSearchCV was used to optimize model parameters, with cross-validation focused on maximizing recall for Poor bridges (class 0).
+
+**Optimized Parameters:**  
+- Number of trees: 200
+- Max depth: None (trees grown to full depth)
+- Min samples split: 9
+- Min samples leaf: 1
+- Max features: None (all features considered)
 - Random state: 0 (for reproducibility)
-- 5-Fold Cross Validation was implemented to ensure no overfitting from the model
 
 A **custom threshold** of 0.05 was applied for predicting Poor bridges(vs default 0.33 for 3-class) to increase detection sensitivity for this rare and critical class.   
 
@@ -56,11 +79,11 @@ A **custom threshold** of 0.05 was applied for predicting Poor bridges(vs defaul
 
 Due to significant class imbalance (2.13% Poor bridges) and the inherent difficulty to fully capture relationships, the model prioritizes safety-critical detection over balanced accuracy.
 
-| Class      | Precision | Recall | F1-Score | Support |
-|------------|-----------|--------|----------|---------|
-| **Poor (0)**   | 0.30      | **0.75**   | 0.43     | 64      |   
-| Fair (1)   | 0.58      | 0.30   | 0.39     | 718     |
-| Good (2)   | 0.85      | 0.88   | 0.87     | 2,208    |
+| Class        | Precision | Recall | F1-Score | Support |
+|-------------|-----------|--------|----------|---------|
+| **Poor (0)** | 0.15      | **0.77** | 0.25     | 96      |
+| Fair (1)     | 0.57      | 0.28   | 0.37     | 1,077   |
+| Good (2)     | 0.85      | 0.89   | 0.87     | 3,312   |
 
 **Overall Accuracy:** 74.1%  
 ---
@@ -69,16 +92,15 @@ Due to significant class imbalance (2.13% Poor bridges) and the inherent difficu
 
 **Poor Bridges (Safety-Critical Class):**
 * **75% recall**: Successfully flags 48 out of 64 structurally deficient bridges, significantly reducing risk of catastrophic failures
-* **30% precision**: Generates false alarms, but in bridge safety, over-flagging is acceptable as  costs of inspections are negligble as compared to collapsing bridges and the costs of repairs.
+* **15% precision**: Generates false alarms, but in bridge safety, over-flagging is acceptable as  costs of inspections are negligble as compared to collapsing bridges and the costs of repairs.
 * **Trade-off justification**: Prioritized sensitivity over specificity to align with FHWA safety mandates and minimize public risk
 
 **Fair Bridges (Middle Class Challenge):**
-* **30% recall**: Struggles due to ambiguous boundaries—"Fair" features overlap significantly with both Good and Poor characteristics
-* **Real-world validation**: Human inspectors show similar inconsistency; deck ratings of 5 vs 6 often vary between evaluators
+* **28% recall**: Struggles due to ambiguous boundaries—"Fair" features overlap significantly with both Good and Poor characteristics
 * **Acceptable limitation**: Model reflects inherent ambiguity in transition zones rather than model weakness
 
 **Good Bridges (Strong Performance):**
-* **88% recall, 85% precision**: Correctly identifies 1,944 out of 2,208 safe bridges, preventing wasted inspection resources
+* **89% recall, 85% precision**: Correctly identifies 1,944 out of 2,208 safe bridges, preventing wasted inspection resources
 * **Business value**: Allows DOT to focus limited resources on truly high-risk assets while safely reducing inspection frequency for verified Good bridges
 
 **Key Takeaway**: Model optimized for **risk mitigation** rather than balanced accuracy appropriate for infrastructure safety applications where missing Poor bridges has exponentially higher costs than false positives.
