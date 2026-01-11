@@ -113,8 +113,8 @@ The Random Forest model identifies the most important features for predicting br
 
 **Top Predictive Features:**  
 1. **Age (importance: 0.28)** – Strongest predictor; bridges over 50 years show significantly higher deterioration rates
-2. **Average Daily Traffic (importance: 0.19)** – Counterintuitively, poor bridges had a significantly lower mean average daily traffic, suggesting that many of them are lightly used rural bridges, which may have been built with weaker materials given the anticipated low traffic they would encounter.
-3. **Structure Length (importance: 0.15)** – Longer spans have more potential failure points and stress concentrations
+2. **Average Daily Traffic (importance: 0.18)** – Counterintuitively, poor bridges had a significantly lower mean average daily traffic, suggesting that many of them are lightly used rural bridges, which may have been built with weaker materials given the anticipated low traffic they would encounter.
+3. **Structure Length (importance: 0.17)** – Longer spans have more potential failure points and stress concentrations
 
 ![Feature Importance Plot](final_importance.png)
 
