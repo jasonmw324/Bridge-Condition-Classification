@@ -22,7 +22,7 @@ New variables were created to enhance model predictiveness:
 - `reconstructed` – Binary indicator derived from reconstruction history to identify bridges that have undergone major renovations
 
 **Feature Selection:**
-A baseline Random Forest model was then fitted to assess feature importance, further reducing the feature set to the most predictive variables for the final model.
+A baseline Random Forest model was fitted to assess feature importance and improve runtimes, as one-hot encoding of categorical features with logical relevance to bridge condition made the dataset high-dimensional and slow to train. This guided the reduction of the feature set to the most predictive variables for the final model.
 
 **Final Variables Used:**
 
