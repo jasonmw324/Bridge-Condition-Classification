@@ -91,7 +91,7 @@ Due to significant class imbalance (2.13% Poor bridges) and the inherent difficu
 ## **Insights:**
 
 **Poor Bridges (Safety-Critical Class):**
-* **75% recall**: Successfully flags 48 out of 64 structurally deficient bridges, significantly reducing risk of catastrophic failures
+* **77% recall**: Successfully flags 48 out of 64 structurally deficient bridges, significantly reducing risk of catastrophic failures
 * **15% precision**: Generates false alarms, but in bridge safety, over-flagging is acceptable as  costs of inspections are negligble as compared to collapsing bridges and the costs of repairs.
 * **Trade-off justification**: Prioritized sensitivity over specificity to align with FHWA safety mandates and minimize public risk
 
