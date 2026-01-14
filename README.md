@@ -51,11 +51,11 @@ For training the model a 70/30 train test split was implemented
 **Models Evaluated:**
 - Random Forest Classifier
 - XGBoost
-- Support Vector Classifier (SVC)
+- Support Vector Machine (SVM)
 
 **Final Model: Random Forest Classifier**
 
-The Random Forest model was selected as the final model based on its superior recall for Poor bridges ([77%] vs [61%] for XGBoost and [20%] for SVC), making it most effective at identifying safety critical infrastructure.
+The Random Forest model was selected as the final model based on its superior recall for Poor bridges ([77%] vs [61%] for XGBoost and [20%] for SVM), and significantly faster runtime compared with the SVM during hyperparameter tuning. was used making it most effective at identifying safety critical infrastructure.
 
 
 **Hyperparameter Tuning:**
